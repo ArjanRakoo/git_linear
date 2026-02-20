@@ -1,14 +1,12 @@
 import inquirer
+import list_issues
 
 def create_branch():
     print("Create branch")
 
-def list_issues():
-    print("List issues")
-
 options = {
     "Create Branch": create_branch,
-    "List Issues": list_issues
+    "List Issues": list_issues.list_issues
 }
 
 def get_options():
@@ -37,9 +35,10 @@ def main_menu():
 
     while is_running:
         answer = inquirer.prompt(get_options())["choice"]
-        if answer is "Exit":
+        if answer == "Exit":
             is_running = False
-
+        if answer == "List Issues":
+            list_issues.list_issues()
 if __name__ == "__main__":
     main_menu()
 
