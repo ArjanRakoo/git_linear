@@ -12,15 +12,17 @@ def prompt_for_choice(choices, multi=False):
 
 
 def prompt_for_multi_choice(choices):
-    return inquirer.checkbox(
-        message="Select issues:",
+    return inquirer.fuzzy(
+        message="Select options:",
         choices=choices,
-        instruction="Type to filter, Space to toggle, Enter to confirm",
+        instruction="Type to filter, Tab to toggle, Enter to confirm",
+        multiselect=True,
+        match_exact=False,
     ).execute()
 
 def prompt_for_single_choice(choices):
     return inquirer.fuzzy(
-        message="Select an option",
+        message="Select an option:",
         choices=choices,
         match_exact=False,
         instruction="Type to filter",
