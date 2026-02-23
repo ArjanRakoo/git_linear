@@ -17,8 +17,17 @@ The application currently only runs when certain packages are installed with ven
 
 # Enable Global Execution
 
+Install pipx
+
 - `brew install pipx`
+
+Add project to path
+
 - `pipx ensurepath`
 - `pipx install -e <path_to_this_repo>`
 
 Command `lineargit` is now globally available
+
+In order to update the project after adding new modules:
+
+- `pipx reinstall lineargit`

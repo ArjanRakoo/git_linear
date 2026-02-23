@@ -18,4 +18,4 @@ dependencies = [
 lineargit = "main:main_menu"
 
 [tool.setuptools]
-py-modules = ["main", "list_issues"]
+py-modules = ["main", "list_issues", "git_status"]
