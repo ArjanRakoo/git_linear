@@ -1,4 +1,4 @@
-from utils.linear import issues
+from utils.linear import issues, linear
 from utils.git import branches, status, check_repo
 from utils.select import select
 from utils.github import github
@@ -6,7 +6,9 @@ from utils.github import github
 class Controller:
     # Options
     def create_branch_from_issue(self):
-        answer = issues.issues.print_list()
+        userId = linear.linear.query_me()
+
+        answer = issues.issues.print_list(userId)
 
         if answer == None:
             return
@@ -37,5 +39,6 @@ class Controller:
 
     def prompt_for_choice(self, choices):
         return select.prompt_for_choice(choices)
+
 
 

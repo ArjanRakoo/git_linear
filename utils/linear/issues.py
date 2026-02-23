@@ -10,10 +10,9 @@ class Issues:
     def __init__(self):
         self.api_url = "https://api.linear.app/graphql"
         self.api_key = os.getenv("LINEAR_API_KEY")
-        self.user_id = os.getenv("LINEAR_USER_ID")
 
-    def print_list(self):
-        data = self.get_issues()
+    def print_list(self, userId):
+        data = self.get_issues(userId)
 
         options = self.create_list_of_branch_names(data)
 
@@ -21,7 +20,7 @@ class Issues:
 
         
 
-    def get_issues(self):
+    def get_issues(self, userId):
         query = """
             query($userId: ID!) {
                 issues(filter: {
@@ -33,7 +32,7 @@ class Issues:
             }
         """
 
-        variables = { "userId": os.getenv("LINEAR_USER_ID") }
+        variables = { "userId": userId }
 
         print("Getting issues...")
 
