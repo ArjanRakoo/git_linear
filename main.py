@@ -1,27 +1,40 @@
-import inquirer
 from utils.linear import issues
-from utils.git import status, check_repo
-from utils.select import list    
+from utils.git import status, check_repo, branches
+from utils.select import list
 
 
 def create_branch():
-    print("Create branch")
+    answer = issues.issues.print_list()
 
+    if answer == None:
+        return
+
+    local_branches = branches.branches.get_local_branches()
+
+    if answer in local_branches:
+        print("--------------------------------")
+        print("Branch already exists")
+        print("--------------------------------")
+        return
+
+    print("--------------------------------")
+    print("Creating branch...")
+    branches.branches.create_branch(answer)
+    print("Done!")
+    print("--------------------------------")
 
 optionsMap = {
-    "Create Branch": create_branch,
-    "List Issues": issues.print_list,
-    "Git Status": status.print_status,
+    "Create Branch from Issue": create_branch,
+    "Git Status":  status.print_status,
+    "Switch Branch":  branches.branches.switch_branch,
 }
 
 
 def get_main_options():
-    options = []
+    options = ["Exit"]
 
     for choice in optionsMap:
         options.append(choice)
-
-    options.append("Exit")
 
     return options
 
