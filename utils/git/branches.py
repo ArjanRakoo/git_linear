@@ -42,4 +42,20 @@ class Branches:
         print(f"Branch {branch_name} created")
         print("--------------------------------")
 
+    def delete_local_branch(self):
+        options = self.get_local_branches()
+
+        options.insert(0, "Cancel")
+
+        print("--------------------------------")
+        answer = list.prompt_for_choice(options)
+
+        if answer == "Cancel":
+            return
+
+        subprocess.run(["git", "branch", "-D", answer], cwd=self.cwd)
+
+        print(f"Branch {answer} deleted")
+        print("--------------------------------")
+
 branches = Branches()

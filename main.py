@@ -27,6 +27,7 @@ optionsMap = {
     "Create Branch from Issue": create_branch,
     "Git Status":  status.print_status,
     "Switch Branch":  branches.branches.switch_branch,
+    "Delete Branch":  branches.branches.delete_local_branch,
 }
 
 
