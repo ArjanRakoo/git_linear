@@ -8,9 +8,9 @@ version = "0.1.0"
 description = "Linear + Git helper CLI"
 requires-python = ">=3.10"
 dependencies = [
-  "inquirer",
   "python-dotenv",
   "requests",
+  "InquirerPy"
 ]
 
 [project.scripts]
