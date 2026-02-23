@@ -1,6 +1,6 @@
 import subprocess
 from pathlib import Path
-from utils.select import list
+from utils.select import select
 
 class Branches:
     def __init__(self):
@@ -20,7 +20,7 @@ class Branches:
     def switch_branch(self):
         options = self.get_local_branches()
 
-        answer = list.prompt_for_choice(options)
+        answer = select.prompt_for_choice(options)
 
         if (answer == None):
             print("Operation cancelled")
@@ -44,7 +44,7 @@ class Branches:
             if branch not in disabled:
                 options.append(branch)
 
-        answer = list.prompt_for_choice(options, multi=True)
+        answer = select.prompt_for_choice(options, multi=True)
         
         if (answer == None):
             print("Was cancelled")

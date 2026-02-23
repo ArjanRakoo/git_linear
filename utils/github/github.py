@@ -1,7 +1,27 @@
 import subprocess
 import json
-
+import webbrowser
+from utils.select import select
 class Github:
+    def list_review_requests(self):
+        requests = self.get_review_requests()
+
+        options = []
+
+        for request in requests:
+            options.append({
+                "name": request['title'],
+                "value": request['url']
+            })
+
+        answer = select.prompt_for_choice(options)
+
+        if answer == None:
+            print("Operation cancelled")
+            return
+
+        webbrowser.open(answer)
+
     def get_review_requests(self):
         result = subprocess.run(
             [

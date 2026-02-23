@@ -1,8 +1,6 @@
 from controller import Controller
 
-
 controller = Controller()
-
 
 optionsMap = {
     "Git Status":  controller.print_git_status,
@@ -32,8 +30,8 @@ def run():
         if answer == None:
             print("Operation cancelled")
             break
-        else:
-            optionsMap[answer]()
+
+        optionsMap[answer]()
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import requests
 import os
-from utils.select import list
+from utils.select import select
 
 
 load_dotenv()
@@ -41,7 +41,7 @@ class Issues:
 
         options = self.create_list_of_branch_names(data)
 
-        return list.prompt_for_choice(options)
+        return select.prompt_for_choice(options)
 
         
 
