@@ -1,29 +1,15 @@
 from utils.linear import issues
 from utils.git import status, check_repo, branches
 from utils.select import list
+from controller import Controller
 
-
-def create_branch():
-    answer = issues.issues.print_list()
-
-    if answer == None:
-        print("Operation cancelled")
-        return
-
-    local_branches = branches.branches.get_local_branches()
-
-    if answer in local_branches:
-        print("Branch already exists")
-        return
-
-    branches.branches.create_branch(answer)
-
+controller = Controller()
 
 optionsMap = {
     "Git Status":  status.print_status,
     "Switch Branch":  branches.branches.switch_branch,
     "Delete Branch":  branches.branches.delete_local_branch,
-    "Create Branch from Issue": create_branch,
+    "Create Branch from Issue": controller.create_branch_from_issue,
 }
 
 

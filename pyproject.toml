@@ -17,7 +17,7 @@ dependencies = [
 lineargit = "main:run"
 
 [tool.setuptools]
-py-modules = ["main"]
+py-modules = ["main", "controller"]
 
 [tool.setuptools.packages.find]
 where = ["."]
