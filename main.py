@@ -7,32 +7,28 @@ def create_branch():
     answer = issues.issues.print_list()
 
     if answer == None:
+        print("Operation cancelled")
         return
 
     local_branches = branches.branches.get_local_branches()
 
     if answer in local_branches:
-        print("--------------------------------")
         print("Branch already exists")
-        print("--------------------------------")
         return
 
-    print("--------------------------------")
-    print("Creating branch...")
     branches.branches.create_branch(answer)
-    print("Done!")
-    print("--------------------------------")
+
 
 optionsMap = {
-    "Create Branch from Issue": create_branch,
     "Git Status":  status.print_status,
     "Switch Branch":  branches.branches.switch_branch,
     "Delete Branch":  branches.branches.delete_local_branch,
+    "Create Branch from Issue": create_branch,
 }
 
 
 def get_main_options():
-    options = ["Exit"]
+    options = []
 
     for choice in optionsMap:
         options.append(choice)
@@ -49,10 +45,10 @@ def run():
     while is_running:
         options = get_main_options()
         answer = list.prompt_for_choice(options)
-
-        if answer not in options:
-            print("Invalid option")
-            continue
+        if answer == None:
+            print("Operation cancelled")
+            is_running = False
+            break
 
         if answer == "Exit":
             is_running = False

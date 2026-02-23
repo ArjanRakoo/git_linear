@@ -41,15 +41,9 @@ class Issues:
 
         options = self.create_list_of_branch_names(data)
 
-        options.insert(0, "Cancel")
+        return list.prompt_for_choice(options)
 
-
-        answer = list.prompt_for_choice(options)
-
-        if answer == "Cancel":
-            return
-
-        return answer
+        
 
     def get_issues(self):
         query = """

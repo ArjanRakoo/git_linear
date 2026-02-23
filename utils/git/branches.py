@@ -20,38 +20,25 @@ class Branches:
     def switch_branch(self):
         options = self.get_local_branches()
 
-        options.insert(0, "Cancel")
-
         answer = list.prompt_for_choice(options)
 
-        if answer == "Cancel":
+        if (answer == None):
+            print("Operation cancelled")
             return
 
-        print("--------------------------------")
         subprocess.run(["git", "checkout", answer], cwd=self.cwd)
 
-        print(f"Switched to branch {answer}")
-        print("--------------------------------")
 
     def create_branch(self, branch_name):
-
-
-        print("--------------------------------")
         subprocess.run(["git", "checkout", "-b", branch_name], cwd=self.cwd)
 
-        print(f"Branch {branch_name} created")
-        print("--------------------------------")
 
     def delete_local_branch(self):
         options = self.get_local_branches()
-
-        options.insert(0, "Cancel")
-
-        print("--------------------------------")
         answer = list.prompt_for_choice(options, multi=True)
         
 
-        if ("Cancel" in answer):
+        if (answer == None):
             print("Was cancelled")
             return
 
@@ -59,7 +46,6 @@ class Branches:
             subprocess.run(["git", "branch", "-D", branch], cwd=self.cwd)
             print(f"Branch {branch} deleted")
 
-        print("Done!")
-        print("--------------------------------")
+
 
 branches = Branches()
