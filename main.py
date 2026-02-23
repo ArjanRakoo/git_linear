@@ -1,44 +1,58 @@
 import inquirer
 import list_issues
 
+
 def create_branch():
     print("Create branch")
 
-options = {
+
+optionsMap = {
     "Create Branch": create_branch,
     "List Issues": list_issues.list_issues
 }
 
+
 def get_options():
-    choices = []
+    options = []
 
-    for choice in options:
-        choices.append(choice)
+    for choice in optionsMap:
+        options.append(choice)
 
-    choices.append("Exit")
+    options.append("Exit")
 
-    questions = [
+    return options
+
+
+def create_selectable_list(options):
+    return [
         inquirer.List(
             "choice",
             message="Select an option",
-            choices=choices
+            choices=options
         )
     ]
-
-    return questions
-
-
 
 
 def main_menu():
     is_running = True
 
     while is_running:
-        answer = inquirer.prompt(get_options())["choice"]
+        options = get_options()
+        selectable_list = create_selectable_list(options)
+
+        answer = inquirer.prompt(selectable_list)["choice"]
+
+        if answer not in options:
+            print("Invalid option")
+            continue
+
         if answer == "Exit":
             is_running = False
-        if answer == "List Issues":
-            list_issues.list_issues()
+            break
+        else:
+            optionsMap[answer]()
+
+
 if __name__ == "__main__":
     main_menu()
 

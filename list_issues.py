@@ -3,9 +3,12 @@ import requests
 import os
 import json
 
+
 load_dotenv()
 
+
 LINEAR_API_URL="https://api.linear.app/graphql"
+
 
 def list_issues():
     query = """
@@ -39,7 +42,6 @@ def list_issues():
     print(branch_names)
 
 
-
 def create_list_of_branch_names(data):
     issues = data["data"]["issues"]["nodes"]
 
@@ -49,4 +51,3 @@ def create_list_of_branch_names(data):
         branch_names.append(issue["branchName"])
 
     return branch_names
-
