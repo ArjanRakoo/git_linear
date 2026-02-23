@@ -22,15 +22,19 @@ class Github:
 
         webbrowser.open(answer)
 
-    def get_review_requests(self):
-        print("Getting review requests...")
+    def search(self, type):
+        possible_types = ["--review-requested=@me", "--reviewed-by=@me"]
+
+        if type not in possible_types:
+            print("Invalid type")
+            return
 
         result = subprocess.run(
             [
                 "gh",
                 "search",
                 "prs",
-                "--review-requested=@me",
+                type,
                 "--state=open",
                 "--json",
                 "number,title,url",
@@ -44,9 +48,24 @@ class Github:
             print(result.stderr.strip())
             return []
 
-        prs = json.loads(result.stdout or "[]")
+        return json.loads(result.stdout or "[]")
 
-        return prs
+
+    def get_review_requests(self):
+        print("Getting review requests...")
+
+        review_requested = self.search("--review-requested=@me")
+        reviewed_by = self.search("--reviewed-by=@me")
+
+        options = []
+
+        for pr in review_requested:
+            options.append(pr)
+
+        for pr in reviewed_by:
+            options.append(pr)
+
+        return options
 
 
 github = Github()
