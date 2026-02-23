@@ -1,6 +1,8 @@
 import inquirer
 from utils.linear import issues
 from utils.git import status, check_repo
+from utils.select import list    
+
 
 def create_branch():
     print("Create branch")
@@ -13,7 +15,7 @@ optionsMap = {
 }
 
 
-def get_options():
+def get_main_options():
     options = []
 
     for choice in optionsMap:
@@ -24,27 +26,15 @@ def get_options():
     return options
 
 
-def create_selectable_list(options):
-    return [
-        inquirer.List(
-            "choice",
-            message="Select an option",
-            choices=options
-        )
-    ]
-
-
-def main_menu():
+def run():
     if not check_repo.is_repo():
         return
 
     is_running = True
 
     while is_running:
-        options = get_options()
-        selectable_list = create_selectable_list(options)
-
-        answer = inquirer.prompt(selectable_list)["choice"]
+        options = get_main_options()
+        answer = list.prompt_for_choice(options)
 
         if answer not in options:
             print("Invalid option")
@@ -58,5 +48,5 @@ def main_menu():
 
 
 if __name__ == "__main__":
-    main_menu()
+    run()
 

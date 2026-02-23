@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [project.scripts]
-lineargit = "main:main_menu"
+lineargit = "main:run"
 
 [tool.setuptools]
 py-modules = ["main"]

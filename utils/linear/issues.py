@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import requests
 import os
-import json
+from utils.select import list
 
 
 load_dotenv()
@@ -37,9 +37,9 @@ def print_list():
 
     data = response.json()
 
-    branch_names = create_list_of_branch_names(data)
+    list.prompt_for_choice(create_list_of_branch_names(data))
 
-    print(branch_names)
+    
 
 
 def create_list_of_branch_names(data):
