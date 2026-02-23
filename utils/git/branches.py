@@ -23,7 +23,6 @@ class Branches:
         answer = select.prompt_for_choice(options)
 
         if (answer == None):
-            print("Operation cancelled")
             return
 
         subprocess.run(["git", "checkout", answer], cwd=self.cwd)

@@ -14,22 +14,24 @@ class Github:
                 "value": request['url']
             })
 
+
         answer = select.prompt_for_choice(options)
 
         if answer == None:
-            print("Operation cancelled")
             return
 
         webbrowser.open(answer)
 
     def get_review_requests(self):
+        print("Getting review requests...")
+
         result = subprocess.run(
             [
                 "gh",
                 "search",
                 "prs",
                 "--review-requested=@me",
-                # "--state=open",
+                "--state=open",
                 "--json",
                 "number,title,url",
             ],

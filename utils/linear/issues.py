@@ -13,31 +13,7 @@ class Issues:
         self.user_id = os.getenv("LINEAR_USER_ID")
 
     def print_list(self):
-        query = """
-            query($userId: ID!) {
-                issues(filter: {
-                    state: { type: { eq: "started" } }
-                    assignee: { id: { eq: $userId } }
-                }) {
-                    nodes { id title identifier branchName }
-                }
-            }
-        """
-
-        variables = { "userId": self.user_id }
-
-        response = requests.post(
-            self.api_url,
-            headers={
-                "Authorization": self.api_key
-            },
-            json={
-                "query": query,
-                "variables": variables
-            }
-        )
-
-        data = response.json()
+        data = self.get_issues()
 
         options = self.create_list_of_branch_names(data)
 
@@ -59,6 +35,8 @@ class Issues:
 
         variables = { "userId": os.getenv("LINEAR_USER_ID") }
 
+        print("Getting issues...")
+
         response = requests.post(
             self.api_url,
             headers={
@@ -70,9 +48,8 @@ class Issues:
             }
         )
 
-        data = response.json()
+        return response.json()
 
-        return self.create_list_of_branch_names(data)
 
     def create_list_of_branch_names(self, data):
         issues = data["data"]["issues"]["nodes"]

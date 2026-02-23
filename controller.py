@@ -9,7 +9,6 @@ class Controller:
         answer = issues.issues.print_list()
 
         if answer == None:
-            print("Operation cancelled")
             return
 
         local_branches = branches.branches.get_local_branches()

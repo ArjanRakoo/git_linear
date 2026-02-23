@@ -3,7 +3,7 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "lineargit"
+name = "lg"
 version = "0.1.0"
 description = "Linear + Git helper CLI"
 requires-python = ">=3.10"
@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [project.scripts]
-lineargit = "main:run"
+lg = "main:run"
 
 [tool.setuptools]
 py-modules = ["main", "controller"]

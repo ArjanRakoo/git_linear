@@ -28,7 +28,6 @@ def run():
         answer = controller.prompt_for_choice(get_main_options())
 
         if answer == None:
-            print("Operation cancelled")
             break
 
         optionsMap[answer]()

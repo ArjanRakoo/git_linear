@@ -1,6 +1,10 @@
 from InquirerPy import inquirer
 
 def prompt_for_choice(choices, multi=False):
+    if len(choices) == 0:
+        print("No options to select from")
+        return None
+
     try:
         if multi:
             return prompt_for_multi_choice(choices)
