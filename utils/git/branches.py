@@ -34,10 +34,18 @@ class Branches:
 
 
     def delete_local_branch(self):
-        options = self.get_local_branches()
+        disabled = {"master", "develop"}
+
+        local_branches = self.get_local_branches()
+
+        options = []
+
+        for branch in local_branches:
+            if branch not in disabled:
+                options.append(branch)
+
         answer = list.prompt_for_choice(options, multi=True)
         
-
         if (answer == None):
             print("Was cancelled")
             return
