@@ -10,7 +10,7 @@ load_dotenv()
 LINEAR_API_URL="https://api.linear.app/graphql"
 
 
-def list_issues():
+def print_list():
     query = """
         query($userId: ID!) {
             issues(filter: {

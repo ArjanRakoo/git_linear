@@ -1,7 +1,6 @@
 import inquirer
-import list_issues
-import git_status
-
+from utils.linear import issues
+from utils.git import status
 
 def create_branch():
     print("Create branch")
@@ -9,8 +8,8 @@ def create_branch():
 
 optionsMap = {
     "Create Branch": create_branch,
-    "List Issues": list_issues.list_issues,
-    "Git Status": git_status.print_git_status
+    "List Issues": issues.print_list,
+    "Git Status": status.print_status,
 }
 
 
