@@ -48,14 +48,18 @@ class Branches:
         options.insert(0, "Cancel")
 
         print("--------------------------------")
-        answer = list.prompt_for_choice(options)
+        answer = list.prompt_for_choice(options, multi=True)
+        
 
-        if answer == "Cancel":
+        if ("Cancel" in answer):
+            print("Was cancelled")
             return
 
-        subprocess.run(["git", "branch", "-D", answer], cwd=self.cwd)
+        for branch in answer:
+            subprocess.run(["git", "branch", "-D", branch], cwd=self.cwd)
+            print(f"Branch {branch} deleted")
 
-        print(f"Branch {answer} deleted")
+        print("Done!")
         print("--------------------------------")
 
 branches = Branches()
