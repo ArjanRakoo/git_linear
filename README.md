@@ -15,4 +15,10 @@ The application should be executable from anywhere on the system
 
 The application currently only runs when certain packages are installed with venv. A requirements file should be added so that other users can also run the application without having to find out what packages should be installed first.
 
+# Enable Global Execution
 
+- `brew install pipx`
+- `pipx ensurepath`
+- `pipx install -e <path_to_this_repo>`
+
+Command `lineargit` is now globally available
