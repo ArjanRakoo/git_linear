@@ -1,14 +1,13 @@
-from utils.linear import issues
-from utils.git import status, check_repo, branches
-from utils.select import list
 from controller import Controller
+
 
 controller = Controller()
 
+
 optionsMap = {
-    "Git Status":  status.print_status,
-    "Switch Branch":  branches.branches.switch_branch,
-    "Delete Branch":  branches.branches.delete_local_branch,
+    "Git Status":  controller.print_git_status,
+    "Switch Branch":  controller.switch_branch,
+    "Delete Branch":  controller.delete_local_branch,
     "Create Branch from Issue": controller.create_branch_from_issue,
 }
 
@@ -23,21 +22,14 @@ def get_main_options():
 
 
 def run():
-    if not check_repo.is_repo():
+    if not controller.check_repo():
         return
 
-    is_running = True
+    while True:
+        answer = controller.prompt_for_choice(get_main_options())
 
-    while is_running:
-        options = get_main_options()
-        answer = list.prompt_for_choice(options)
         if answer == None:
             print("Operation cancelled")
-            is_running = False
-            break
-
-        if answer == "Exit":
-            is_running = False
             break
         else:
             optionsMap[answer]()

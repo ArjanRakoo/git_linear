@@ -1,5 +1,6 @@
 from utils.linear import issues
-from utils.git import branches
+from utils.git import branches, status, check_repo
+from utils.select import list
 
 class Controller:
     def create_branch_from_issue(self):
@@ -16,3 +17,18 @@ class Controller:
             return
 
         branches.branches.create_branch(answer)
+
+    def delete_local_branch(self):
+        branches.branches.delete_local_branch()
+
+    def switch_branch(self):
+        branches.branches.switch_branch()
+
+    def print_git_status(self):
+        status.print_status()
+
+    def check_repo(self):
+        return check_repo.is_repo()
+
+    def prompt_for_choice(self, choices):
+        return list.prompt_for_choice(choices)
