@@ -9,6 +9,7 @@ optionsMap = {
     "Switch Branch":  controller.switch_branch,
     "Delete Branch":  controller.delete_local_branch,
     "Create Branch from Issue": controller.create_branch_from_issue,
+    "List Review Requests": controller.list_review_requests,
 }
 
 
