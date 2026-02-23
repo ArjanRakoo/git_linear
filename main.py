@@ -1,6 +1,6 @@
 import inquirer
 from utils.linear import issues
-from utils.git import status
+from utils.git import status, check_repo
 
 def create_branch():
     print("Create branch")
@@ -35,6 +35,9 @@ def create_selectable_list(options):
 
 
 def main_menu():
+    if not check_repo.is_repo():
+        return
+
     is_running = True
 
     while is_running:
